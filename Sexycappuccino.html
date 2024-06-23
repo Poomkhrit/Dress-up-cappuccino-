@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dress Up Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .character {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .character img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .clothes {
+            margin-top: 20px;
+        }
+
+        .clothes img {
+            margin: 10px;
+            cursor: pointer;
+            width: 50px;
+            outline: none;
+            border: none;
+            transition: transform 0.2s; /* smooth transition */
+        }
+
+        .clothes img:focus, .clothes img:active {
+            outline: none;
+            border: none;
+            transform: none; /* prevent zoom on click */
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="character">
+            <img id="base-character" src="Cappuccino.png" alt="Base Character">
+            <img id="clothing-layer" class="clothing-layer" src="" alt="Clothing Layer">
+        </div>
+        <div class="clothes">
+            <img id="onepiece" class="clothing-item" src="Cappuccinoonepiece.png" alt="One Piece">
+            <img id="lingerie" class="clothing-item" src="Cappuccinolingerie.png" alt="Lingerie">
+            <img id="underpants" class="clothing-item" src="Cappuccinounderpants.png" alt="Underpants">
+            <img id="underwear" class="clothing-item" src="Cappuccinounderwear.png" alt="Underwear">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const clothingLayer = document.getElementById('clothing-layer');
+            const clothingItems = document.querySelectorAll('.clothing-item');
+            let currentClothing = '';
+
+            clothingItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (clothingLayer.src.includes(item.src)) {
+                        clothingLayer.src = '';
+                        currentClothing = '';
+                    } else {
+                        clothingLayer.src = item.src;
+                        currentClothing = item.src;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
